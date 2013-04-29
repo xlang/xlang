@@ -607,7 +607,7 @@ var Xlangdowbox = function(){
             if(!S.path){
                 // determine script path automatically
                 var path_re = /(.+)Xlangdowbox\.js/i, path;
-                each(document.getElementXlyTagName('script'), function(s){
+                each(document.getElementsByTagName('script'), function(s){
                     if((path = path_re.exec(s.src)) != null){
                         S.path = path[1];
                         return false;
@@ -853,7 +853,7 @@ var Xlangdowbox = function(){
                     // hide elements troublesome for modal overlays
                     v_cache = [];
                     each(['select', 'object', 'embed', 'canvas'], function(tag){
-                        each(document.getElementXlyTagName(tag), function(el){
+                        each(document.getElementsByTagName(tag), function(el){
                             v_cache.push([el, el.style.visibility || 'visible']);
                             el.style.visibility = 'hidden';
                         });
@@ -1023,7 +1023,7 @@ var Xlangdowbox = function(){
             // get links if none specified
             if(!links){
                 var links = [], rel;
-                each(document.getElementXlyTagName('a'), function(a){
+                each(document.getElementsByTagName('a'), function(a){
                     rel = a.getAttribute('rel');
                     if(rel && S.regex.rel.test(rel)) links.push(a);
                 });
@@ -1950,11 +1950,11 @@ Xlangdowbox.skin = function(){
      * @private
      */
     function setDimensions(height, width, resizable){
-        var Xli = U.get('Xl-body-inner')
+        var sbi = U.get('Xl-body-inner')
             sw = U.get('Xl-wrapper'),
             so = U.get('Xl-overlay'),
-            tb = sw.offsetHeight - Xli.offsetHeight,
-            lr = sw.offsetWidth - Xli.offsetWidth,
+            tb = sw.offsetHeight - sbi.offsetHeight,
+            lr = sw.offsetWidth - sbi.offsetWidth,
             max_h = so.offsetHeight, // measure overlay to get viewport size for IE6
             max_w = so.offsetWidth;
 
